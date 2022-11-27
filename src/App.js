@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import{useSelector , useDispatch} from 'react-redux'
 
-function App() {
+const App = () => {
+  //4 access data from store reducer with useSelector
+  const data = useSelector(state=>state.counter)
+  //5 change data in reducer with dispatch
+  const dispatchCounter = useDispatch();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h3>Counter:</h3>
+      <h2>{data}</h2>
+      <button onClick={()=>dispatchCounter({type:'INCERMENT'})}>increace</button>
+      <button onClick={()=>dispatchCounter({type:'DECERMENT'})}>Decreace</button>
+      <button onClick={()=>dispatchCounter({type:'RESET'})}>RESET</button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
